@@ -56,12 +56,12 @@ func isPrime(x int) {
 
 			if x%i == 0 {
 
-				fmt.Print("It isn't a Prime number.")
+				fmt.Println("It isn't a Prime number.")
 				return
 			}
 		}
 	}
 
-	fmt.Print("It is a Prime number.")
+	fmt.Println("It is a Prime number.")
 
 }
