@@ -1,8 +1,11 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"math"
+	"os"
+	"strconv"
 )
 
 func main() {
@@ -11,12 +14,17 @@ func main() {
 	fmt.Println("How many numbers would you like to find?")
 	_, _ = fmt.Scan(&nums)
 
-	var numbers []int
 	fmt.Println("Enter a number.")
-	numbers, _ = inputInt(nums)
+	arr := make([]int, nums)
 
-	for i := 0; i < len(numbers); i++ {
-		isPrime(numbers[i])
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
+	input := scanner.Text()
+
+	getIntSlice(input, &arr, nums)
+
+	for i := 0; i < len(arr); i++ {
+		isPrime(arr[i])
 	}
 
 	// n, _ := fmt.Scanln(&num)
@@ -25,20 +33,26 @@ func main() {
 	// }
 
 }
-
-func inputInt(n int) ([]int, error) {
-
-	x := make([]int, n)
-
-	for i := range x {
-		_, err := fmt.Scan(&x[i])
-		if err != nil {
-			fmt.Println(err)
-			return x[:i], err
-		}
+func getIntSlice(input string, arr *[]int, n int) {
+	for i := 0; i < n; i++ {
+		num, _ := strconv.Atoi(string(input[i]))
+		*arr = append(*arr, num)
 	}
-	return x, nil
 }
+
+// func inputInt(n int) ([]int, error) {
+
+// 	x := make([]int, n)
+
+// 	for i := range x {
+// 		_, err := fmt.Scan(&x[i])
+// 		if err != nil {
+// 			fmt.Println(err)
+// 			return x[:i], err
+// 		}
+// 	}
+// 	return x, nil
+// }
 
 func isPrime(x int) {
 
